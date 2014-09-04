@@ -1,0 +1,9 @@
+[Unit]
+Description=Daily full system backup
+
+[Timer]
+OnCalendar=Mon-Fri *-*-* 04:04:04
+Persistent=true
+
+[Install]
+WantedBy=timers.target

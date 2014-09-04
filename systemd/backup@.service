@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup profile "%i"
+
+[Service]
+Nice=19
+IOSchedulingClass=2
+IOSchedulingPriority=7
+EnvironmentFile=/etc/default/backup@%i
+ExecStart=/usr/bin/backup
