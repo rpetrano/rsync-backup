@@ -56,6 +56,7 @@ Installation
     install -o root -g root -m 700 src/backup.sh /usr/bin/backup
     install -o root -g root -m 600 src/example.conf /etc/default/backup
     install -o root -g root cron/backup.crontab /etc/cron.d/
+    sed -e 's:\(^#\?\s*\)\([a-z]\+=\):\1export \2:i' -i /etc/default/backup
 
 Usage
 -----
@@ -76,7 +77,7 @@ To speed up things a bit you can use something like this in your config file:
 
 If you want to backup some mounted filesystems as well, remove the `-x` option from params and add `--exclude` parameters if needed. Also, you can remove the `-S` option and add `--inplace` for more performance gains, but less efficiently stored big files. Something like this:
 
-    params=-avzXAHE --inplace --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"}
+    params="-avzXAHE --inplace --exclude={'/dev/*','/proc/*','/sys/*','/tmp/*','/run/*','/mnt/*','/media/*','/lost+found'}"
 
 I'm also not sure if `-z` does anything besides frying CPU.
 

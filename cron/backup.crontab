@@ -1,1 +1,1 @@
-4 4 * * 1-5 root . /etc/default/backup && /usr/bin/backup >> /var/log/backup.log 2>&1
+4 4 * * 2-6 root . /etc/default/backup && /usr/bin/backup >> /var/log/backup.log 2>&1

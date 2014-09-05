@@ -9,6 +9,9 @@
 [ -z "$rsync" ] && rsync="ionice -c 2 -n 7 nice -n 19 rsync"
 [ -z "$params" ] && params=-avzxXAHES
 
+stamp=$(eval echo $stamp)
+params=$(eval echo $params)
+
 stamps=$(ssh "$host" "ls -1 '$dest'" 2> /dev/null)
 laststamp=$(echo "$stamps" | sort -nr | head -n 1)
 firststamp=$(echo "$stamps" | sort -n | head -n 1)
