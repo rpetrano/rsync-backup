@@ -6,7 +6,7 @@
 [ -z "$stamp" ] && stamp=$(date +%Y%m%d%H%M%S)
 [ -z "$ssh" ] && ssh=ssh
 [ -z "$rsync" ] && rsync="ionice -c 2 -n 7 nice -n 19 rsync"
-[ -z "$params" ] && params=-avzxXAHES
+[ -z "$params" ] && params=-azxXAHES
 
 stamp=$(eval echo $stamp)
 params=$(eval echo $params)
@@ -25,7 +25,7 @@ laststamp=$(echo "$stamps" | sort -nr | head -n 1)
 firststamp=$(echo "$stamps" | sort -n | head -n 1)
 
 if [ "$rotate" -gt "1" ] && [ "$(echo "$stamps" | wc -l)" -ge "$rotate" ]; then
-	if [ -z "$host"]; then
+	if [ -z "$host" ]; then
 		rm -Rf "$dest/$firststamp"
 	else
 		ssh "$host" "rm -Rf '$dest/$firststamp'"
